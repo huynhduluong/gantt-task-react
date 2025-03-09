@@ -10,7 +10,11 @@ export type GridBodyProps = {
   rowHeight: number;
   columnWidth: number;
   todayColor: string;
+  weekendColor: string;
   rtl: boolean;
+  hideTicks: boolean;
+  hideRowLines: boolean;
+  hideWeekends: boolean;
 };
 export const GridBody: React.FC<GridBodyProps> = ({
   tasks,
@@ -20,9 +24,14 @@ export const GridBody: React.FC<GridBodyProps> = ({
   columnWidth,
   todayColor,
   rtl,
+  hideRowLines = false,
+  hideTicks = false,
+  hideWeekends = false,
+  weekendColor,
 }) => {
   let y = 0;
   const gridRows: ReactChild[] = [];
+  const weekends: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
       key="RowLineFirst"
@@ -114,13 +123,26 @@ export const GridBody: React.FC<GridBodyProps> = ({
         />
       );
     }
+    if (date.getDay() === 0 || date.getDay() === 6) {
+      weekends.push(
+        <rect
+          key={"weekend" + date.getTime()}
+          x={tickX + columnWidth}
+          y={0}
+          width={columnWidth}
+          height={y}
+          fill={weekendColor}
+        />
+      );
+    }
     tickX += columnWidth;
   }
   return (
     <g className="gridBody">
       <g className="rows">{gridRows}</g>
-      <g className="rowLines">{rowLines}</g>
-      <g className="ticks">{ticks}</g>
+      {!hideRowLines && <g className="rowLines">{rowLines}</g>}
+      {!hideTicks && <g className="ticks">{ticks}</g>}
+      {!hideWeekends && <g className="weekend">{weekends}</g>}
       <g className="today">{today}</g>
     </g>
   );

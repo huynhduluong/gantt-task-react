@@ -63,6 +63,17 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
   }, [textRef, task]);
 
   const getX = () => {
+    if (!textRef.current) {
+      return task.x1;
+    }
+    if (textRef.current.getBBox().width > task.x2 - task.x1) {
+      let trimmedText = task.name;
+      while (textRef.current.getBBox().width > task.x2 - task.x1 && trimmedText.length > 0) {
+        trimmedText = trimmedText.slice(0, -2);
+        textRef.current.textContent = trimmedText + "...";
+      }
+      return task.x1 + (task.x2 - task.x1) / 2 - textRef.current.getBBox().width / 2;
+    }
     const width = task.x2 - task.x1;
     const hasChild = task.barChildren.length > 0;
     if (isTextInside) {

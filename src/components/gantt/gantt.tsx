@@ -28,6 +28,9 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   tasks,
   headerHeight = 50,
   columnWidth = 60,
+  hideRowLines = false,
+  hideTicks = false,
+  hideWeekends = false,
   listCellWidth = "155px",
   rowHeight = 50,
   ganttHeight = 0,
@@ -54,6 +57,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   fontSize = "14px",
   arrowIndent = 20,
   todayColor = "rgba(252, 248, 227, 0.5)",
+  weekendColor = "#F5F7FA",
   viewDate,
   TooltipContent = StandardTooltipContent,
   TaskListHeader = TaskListHeaderDefault,
@@ -395,6 +399,10 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     dates: dateSetup.dates,
     todayColor,
     rtl,
+    hideRowLines,
+    hideTicks,
+    hideWeekends,
+    weekendColor,
   };
   const calendarProps: CalendarProps = {
     dateSetup,

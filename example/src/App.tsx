@@ -87,6 +87,9 @@ const App = () => {
         onExpanderClick={handleExpanderClick}
         listCellWidth={isChecked ? "155px" : ""}
         columnWidth={columnWidth}
+        hideTicks={true}
+        hideWeekends={false}
+        weekendColor="#f0f0f0"
       />
       <h3>Gantt With Limited Height</h3>
       <Gantt

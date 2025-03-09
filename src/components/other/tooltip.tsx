@@ -116,21 +116,19 @@ export const StandardTooltipContent: React.FC<{
   task: Task;
   fontSize: string;
   fontFamily: string;
-}> = ({ task, fontSize, fontFamily }) => {
+  hideDuration?: boolean;
+}> = ({ task, fontSize, fontFamily, hideDuration }) => {
   const style = {
     fontSize,
     fontFamily,
   };
   return (
     <div className={styles.tooltipDefaultContainer} style={style}>
-      <b style={{ fontSize: fontSize + 6 }}>{`${
-        task.name
-      }: ${task.start.getDate()}-${
-        task.start.getMonth() + 1
-      }-${task.start.getFullYear()} - ${task.end.getDate()}-${
-        task.end.getMonth() + 1
-      }-${task.end.getFullYear()}`}</b>
-      {task.end.getTime() - task.start.getTime() !== 0 && (
+      <b style={{ fontSize: fontSize + 6 }}>{`${task.name
+        }: ${task.start.getDate()}-${task.start.getMonth() + 1
+        }-${task.start.getFullYear()} - ${task.end.getDate()}-${task.end.getMonth() + 1
+        }-${task.end.getFullYear()}`}</b>
+      {task.end.getTime() - task.start.getTime() !== 0 && !hideDuration && (
         <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
           (task.end.getTime() - task.start.getTime()) /
           (1000 * 60 * 60 * 24)

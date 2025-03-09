@@ -88,6 +88,9 @@ export interface DisplayOption {
 export interface StylingOption {
   headerHeight?: number;
   columnWidth?: number;
+  hideWeekends?: boolean;
+  hideTicks?: boolean;
+  hideRowLines?: boolean;
   listCellWidth?: string;
   rowHeight?: number;
   ganttHeight?: number;
@@ -113,6 +116,7 @@ export interface StylingOption {
   arrowColor?: string;
   arrowIndent?: number;
   todayColor?: string;
+  weekendColor?: string;
   TooltipContent?: React.FC<{
     task: Task;
     fontSize: string;

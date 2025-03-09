@@ -24,11 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Bump version using standard-version
-        run: |
-          npx standard-version --release-as patch
-          git push --follow-tags
-
       - name: Publish to npm
         run: npm publish
         env:

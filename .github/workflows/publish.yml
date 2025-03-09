@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build package
-        run: npm run build # Nếu package cần build, nếu không thì bỏ dòng này
-
       - name: Publish to npm
         run: npm publish
         env:

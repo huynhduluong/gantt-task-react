@@ -5,6 +5,9 @@
   "author": "huynhduluong",
   "homepage": "https://github.com/huynhduluong/gantt-task-react",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "huynhduluong/gantt-task-react",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",

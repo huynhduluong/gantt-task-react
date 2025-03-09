@@ -27,8 +27,14 @@ jobs:
       - name: Bump version
         run: |
           npm version patch -m "chore(release): %s"
+
+      - name: Cấu hình Git
+        run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit & Push thay đổi
+        run: |
           git commit -am "Bump version"
           git push
 

@@ -1,7 +1,7 @@
 {
   "name": "@huynhduluong/gantt-task-react",
   "version": "0.0.3",
-  "description": "Interactive Gantt Chart for React with TypeScript.",
+  "description": "Interactive Gantt Chart for React with TypeScript",
   "author": "huynhduluong",
   "homepage": "https://github.com/huynhduluong/gantt-task-react",
   "license": "MIT",

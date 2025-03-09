@@ -6,4 +6,4 @@ export type {
   StylingOption,
   DisplayOption,
   EventOption,
-} from "./types/public-types";
+} from "./types/public-types"; 

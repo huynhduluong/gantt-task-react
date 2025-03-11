@@ -123,7 +123,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
         />
       );
     }
-    if (date.getDay() === 0 || date.getDay() === 6) {
+    if (date.getDay() === 5 || date.getDay() === 6) {
       weekends.push(
         <rect
           key={"weekend" + date.getTime()}

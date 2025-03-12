@@ -35,6 +35,8 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   hideTicks = false,
   hideWeekends = false,
   hideAssigners = true,
+  hideDuration = false,
+  hideProgress = false,
   listCellWidth = "155px",
   listCellAssignerWidth = "",
   rowHeight = 50,
@@ -493,8 +495,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     TaskAssignerHeader,
     TaskAssignerTable,
   };
-  console.log("🚀 ~ taskAssignerWidth:", taskAssignerWidth)
-
   return (
     <div>
       <div
@@ -529,6 +529,8 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
             TooltipContent={TooltipContent}
             rtl={rtl}
             svgWidth={svgWidth}
+            hideDuration={hideDuration}
+            hideProgress={hideProgress}
           />
         )}
         <VerticalScroll

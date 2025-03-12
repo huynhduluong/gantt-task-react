@@ -21,7 +21,11 @@ export type TooltipProps = {
     task: Task;
     fontSize: string;
     fontFamily: string;
+    hideDuration?: boolean;
+    hideProgress?: boolean;
   }>;
+  hideDuration?: boolean;
+  hideProgress?: boolean;
 };
 export const Tooltip: React.FC<TooltipProps> = ({
   task,
@@ -37,6 +41,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
   headerHeight,
   taskListWidth,
   TooltipContent,
+  hideProgress,
+  hideDuration,
 }) => {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [relatedY, setRelatedY] = useState(0);
@@ -107,7 +113,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       }
       style={{ left: relatedX, top: relatedY }}
     >
-      <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
+      <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} hideDuration={hideDuration} hideProgress={hideProgress} />
     </div>
   );
 };
@@ -117,7 +123,8 @@ export const StandardTooltipContent: React.FC<{
   fontSize: string;
   fontFamily: string;
   hideDuration?: boolean;
-}> = ({ task, fontSize, fontFamily, hideDuration }) => {
+  hideProgress?: boolean;
+}> = ({ task, fontSize, fontFamily, hideDuration, hideProgress }) => {
   const style = {
     fontSize,
     fontFamily,
@@ -135,9 +142,9 @@ export const StandardTooltipContent: React.FC<{
         )} day(s)`}</p>
       )}
 
-      <p className={styles.tooltipDefaultContainerParagraph}>
+      {!hideProgress && <p className={styles.tooltipDefaultContainerParagraph}>
         {!!task.progress && `Progress: ${task.progress} %`}
-      </p>
+      </p>}
     </div>
   );
 };

@@ -93,6 +93,8 @@ export interface StylingOption {
   hideTicks?: boolean;
   hideRowLines?: boolean;
   hideAssigners?: boolean;
+  hideDuration?: boolean;
+  hideProgress?: boolean;
   listCellWidth?: string;
   listCellAssignerWidth?: string;
   rowHeight?: number;
@@ -124,6 +126,8 @@ export interface StylingOption {
     task: Task;
     fontSize: string;
     fontFamily: string;
+    hideDuration?: boolean;
+    hideProgress?: boolean;
   }>;
   TaskListHeader?: React.FC<{
     headerHeight: number;

@@ -92,6 +92,8 @@ const App = () => {
         hideWeekends={false}
         weekendColor="#f0f0f0"
         locale="vi"
+        hideAssignerTicks={false}
+        hideRowLines
       />
       <h3>Gantt With Limited Height</h3>
       <Gantt

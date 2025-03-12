@@ -31,7 +31,8 @@ export interface Task {
   dependencies?: string[];
   hideChildren?: boolean;
   displayOrder?: number;
-  assignerName?: string
+  assignerName?: string;
+  assignerId?: number;
 }
 
 export interface EventOption {
@@ -95,6 +96,7 @@ export interface StylingOption {
   hideAssigners?: boolean;
   hideDuration?: boolean;
   hideProgress?: boolean;
+  hideAssignerTicks?: boolean;
   listCellWidth?: string;
   listCellAssignerWidth?: string;
   rowHeight?: number;

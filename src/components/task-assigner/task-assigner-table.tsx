@@ -29,7 +29,7 @@ export const TaskAssignerTableDefault: React.FC<{
           fontSize: fontSize,
         }}
       >
-        {tasks.map(t => {
+        {tasks.map((t, index) => {
           return (
             <div
               className={styles.taskAssignerTableRow}
@@ -37,10 +37,11 @@ export const TaskAssignerTableDefault: React.FC<{
               key={`${t.id}row`}
             >
               <div
-                className={styles.taskAssignerCell}
+                className={`${styles.taskAssignerCell} ${t.assignerId !== tasks[index + 1]?.assignerId ? styles.taskAssignerBorder : ""}`}
                 style={{
                   minWidth: rowWidth,
                   maxWidth: rowWidth,
+                  marginLeft: "10px",
                 }}
                 title={t.assignerName}
               >

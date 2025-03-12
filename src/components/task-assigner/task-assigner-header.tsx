@@ -25,17 +25,11 @@ export const TaskAssignerHeaderDefault: React.FC<{
           className={styles.ganttTable_HeaderItem}
           style={{
             minWidth: rowWidth,
+            marginLeft: "10px",
           }}
         >
-          &nbsp;Assigner
+          &nbsp;Người thực hiện
         </div>
-        <div
-          className={styles.ganttTable_HeaderSeparator}
-          style={{
-            height: headerHeight * 0.5,
-            marginTop: headerHeight * 0.2,
-          }}
-        />
       </div>
     </div>
   );

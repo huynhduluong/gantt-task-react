@@ -34,9 +34,9 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   hideRowLines = false,
   hideTicks = false,
   hideWeekends = false,
-  hideAssigners = true,
   hideDuration = false,
   hideProgress = false,
+  hideAssignerTicks = true,
   listCellWidth = "155px",
   listCellAssignerWidth = "",
   rowHeight = 50,
@@ -256,13 +256,13 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   }, [taskListRef, listCellWidth]);
 
   useEffect(() => {
-    if (hideAssigners) {
+    if (!!listCellAssignerWidth) {
       setTaskAssignerWidth(0);
     }
     if (taskAssignerRef.current) {
       setTaskAssignerWidth(taskAssignerRef.current.offsetWidth);
     }
-  }, [taskAssignerRef, hideAssigners]);
+  }, [taskAssignerRef, listCellAssignerWidth]);
 
   useEffect(() => {
     if (wrapperRef.current) {
@@ -423,6 +423,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     hideTicks,
     hideWeekends,
     weekendColor,
+    hideAssignerTicks,
   };
   const calendarProps: CalendarProps = {
     dateSetup,

@@ -12,6 +12,8 @@ export function initTasks() {
       type: "project",
       hideChildren: false,
       displayOrder: 1,
+      assignerName: "John Doe",
+      assignerId: 1
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
@@ -28,6 +30,8 @@ export function initTasks() {
       type: "task",
       project: "ProjectSample",
       displayOrder: 2,
+      assignerName: "John Doe",
+      assignerId: 1
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 2),
@@ -35,10 +39,12 @@ export function initTasks() {
       name: "Research",
       id: "Task 1",
       progress: 25,
-      dependencies: ["Task 0"],
+      // dependencies: ["Task 0"],
       type: "task",
       project: "ProjectSample",
       displayOrder: 3,
+      assignerName: "luong",
+      assignerId: 2
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 4),
@@ -46,10 +52,12 @@ export function initTasks() {
       name: "Discussion with team",
       id: "Task 2",
       progress: 10,
-      dependencies: ["Task 1"],
+      // dependencies: ["Task 1"],
       type: "task",
       project: "ProjectSample",
       displayOrder: 4,
+      assignerName: "luong",
+      assignerId: 2
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 8),
@@ -57,10 +65,12 @@ export function initTasks() {
       name: "Developing",
       id: "Task 3",
       progress: 2,
-      dependencies: ["Task 2"],
+      // dependencies: ["Task 2"],
       type: "task",
       project: "ProjectSample",
       displayOrder: 5,
+      assignerName: "du",
+      assignerId: 3
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 8),
@@ -69,9 +79,11 @@ export function initTasks() {
       id: "Task 4",
       type: "task",
       progress: 70,
-      dependencies: ["Task 2"],
+      // dependencies: ["Task 2"],
       project: "ProjectSample",
       displayOrder: 6,
+      assignerName: "du",
+      assignerId: 3
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 15),
@@ -80,9 +92,11 @@ export function initTasks() {
       id: "Task 6",
       progress: currentDate.getMonth(),
       type: "milestone",
-      dependencies: ["Task 4"],
+      // dependencies: ["Task 4"],
       project: "ProjectSample",
       displayOrder: 7,
+      assignerName: "huynh",
+      assignerId: 4
     },
     {
       start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 18),
@@ -92,6 +106,8 @@ export function initTasks() {
       progress: 0,
       isDisabled: true,
       type: "task",
+      assignerName: "huynh",
+      assignerId: 4
     },
   ];
   return tasks;

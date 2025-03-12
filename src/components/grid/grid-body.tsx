@@ -15,6 +15,7 @@ export type GridBodyProps = {
   hideTicks: boolean;
   hideRowLines: boolean;
   hideWeekends: boolean;
+  hideAssignerTicks: boolean;
 };
 export const GridBody: React.FC<GridBodyProps> = ({
   tasks,
@@ -24,14 +25,16 @@ export const GridBody: React.FC<GridBodyProps> = ({
   columnWidth,
   todayColor,
   rtl,
-  hideRowLines = false,
-  hideTicks = false,
-  hideWeekends = false,
+  hideRowLines,
+  hideTicks,
+  hideWeekends,
   weekendColor,
+  hideAssignerTicks,
 }) => {
   let y = 0;
   const gridRows: ReactChild[] = [];
   const weekends: ReactChild[] = [];
+  const assignerTicks: ReactChild[] = [];
   const rowLines: ReactChild[] = [
     <line
       key="RowLineFirst"
@@ -42,7 +45,8 @@ export const GridBody: React.FC<GridBodyProps> = ({
       className={styles.gridRowLine}
     />,
   ];
-  for (const task of tasks) {
+  for (let j = 0; j < tasks.length; j++) {
+    const task = tasks[j];
     gridRows.push(
       <rect
         key={"Row" + task.id}
@@ -63,6 +67,17 @@ export const GridBody: React.FC<GridBodyProps> = ({
         className={styles.gridRowLine}
       />
     );
+    if (task?.assignerId !== tasks[j + 1]?.assignerId)
+      assignerTicks.push(
+        <line
+          key={"AssignerTick" + task.id}
+          x="0"
+          y1={y + rowHeight}
+          x2={svgWidth}
+          y2={y + rowHeight}
+          className={styles.gridRowLine}
+        />
+      )
     y += rowHeight;
   }
 
@@ -143,6 +158,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
       {!hideRowLines && <g className="rowLines">{rowLines}</g>}
       {!hideTicks && <g className="ticks">{ticks}</g>}
       {!hideWeekends && <g className="weekend">{weekends}</g>}
+      {!hideAssignerTicks && <g className="assignerTicks">{assignerTicks}</g>}
       <g className="today">{today}</g>
     </g>
   );

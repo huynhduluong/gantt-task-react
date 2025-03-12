@@ -4,6 +4,10 @@
   border-left: #e6e4e4 1px solid;
 }
 
+.taskAssignerBorder {
+  border-bottom: #e6e4e4 1px solid;
+}
+
 .taskAssignerTableRow {
   display: table-row;
   text-overflow: ellipsis;

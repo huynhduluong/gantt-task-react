@@ -5,9 +5,10 @@ export const HorizontalScroll: React.FC<{
   scroll: number;
   svgWidth: number;
   taskListWidth: number;
+  taskAssignerWidth: number;
   rtl: boolean;
   onScroll: (event: SyntheticEvent<HTMLDivElement>) => void;
-}> = ({ scroll, svgWidth, taskListWidth, rtl, onScroll }) => {
+}> = ({ scroll, svgWidth, taskListWidth, taskAssignerWidth, rtl, onScroll }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,8 +22,8 @@ export const HorizontalScroll: React.FC<{
       dir="ltr"
       style={{
         margin: rtl
-          ? `0px ${taskListWidth}px 0px 0px`
-          : `0px 0px 0px ${taskListWidth}px`,
+          ? `0px ${taskListWidth + taskAssignerWidth}px 0px 0px`
+          : `0px 0px 0px ${taskListWidth + taskAssignerWidth}px`,
       }}
       className={styles.scrollWrapper}
       onScroll={onScroll}

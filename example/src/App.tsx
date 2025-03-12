@@ -86,10 +86,12 @@ const App = () => {
         onSelect={handleSelect}
         onExpanderClick={handleExpanderClick}
         listCellWidth={isChecked ? "155px" : ""}
+        listCellAssignerWidth="100px"
         columnWidth={columnWidth}
         hideTicks={true}
         hideWeekends={false}
         weekendColor="#f0f0f0"
+        locale="vi"
       />
       <h3>Gantt With Limited Height</h3>
       <Gantt
@@ -103,6 +105,7 @@ const App = () => {
         onSelect={handleSelect}
         onExpanderClick={handleExpanderClick}
         listCellWidth={isChecked ? "155px" : ""}
+        listCellAssignerWidth="100px"
         ganttHeight={300}
         columnWidth={columnWidth}
       />

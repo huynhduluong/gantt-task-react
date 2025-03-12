@@ -31,6 +31,7 @@ export interface Task {
   dependencies?: string[];
   hideChildren?: boolean;
   displayOrder?: number;
+  assignerName?: string
 }
 
 export interface EventOption {
@@ -91,7 +92,9 @@ export interface StylingOption {
   hideWeekends?: boolean;
   hideTicks?: boolean;
   hideRowLines?: boolean;
+  hideAssigners?: boolean;
   listCellWidth?: string;
+  listCellAssignerWidth?: string;
   rowHeight?: number;
   ganttHeight?: number;
   barCornerRadius?: number;
@@ -139,6 +142,23 @@ export interface StylingOption {
     /**
      * Sets selected task by id
      */
+    setSelectedTask: (taskId: string) => void;
+    onExpanderClick: (task: Task) => void;
+  }>;
+  TaskAssignerHeader?: React.FC<{
+    headerHeight: number;
+    rowWidth: string;
+    fontFamily: string;
+    fontSize: string;
+  }>;
+  TaskAssignerTable?: React.FC<{
+    rowHeight: number;
+    rowWidth: string;
+    fontFamily: string;
+    fontSize: string;
+    locale: string;
+    tasks: Task[];
+    selectedTaskId: string;
     setSelectedTask: (taskId: string) => void;
     onExpanderClick: (task: Task) => void;
   }>;

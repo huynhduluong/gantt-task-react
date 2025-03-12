@@ -23,6 +23,9 @@ import { DateSetup } from "../../types/date-setup";
 import { HorizontalScroll } from "../other/horizontal-scroll";
 import { removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
 import styles from "./gantt.module.css";
+import { TaskAssigner, TaskAssignerProps } from "../task-assigner/task-assigner";
+import { TaskAssignerHeaderDefault } from "../task-assigner/task-assigner-header";
+import { TaskAssignerTableDefault } from "../task-assigner/task-assigner-table";
 
 export const Gantt: React.FunctionComponent<GanttProps> = ({
   tasks,
@@ -31,7 +34,9 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   hideRowLines = false,
   hideTicks = false,
   hideWeekends = false,
+  hideAssigners = true,
   listCellWidth = "155px",
+  listCellAssignerWidth = "",
   rowHeight = 50,
   ganttHeight = 0,
   viewMode = ViewMode.Day,
@@ -62,6 +67,8 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   TooltipContent = StandardTooltipContent,
   TaskListHeader = TaskListHeaderDefault,
   TaskListTable = TaskListTableDefault,
+  TaskAssignerHeader = TaskAssignerHeaderDefault,
+  TaskAssignerTable = TaskAssignerTableDefault,
   onDateChange,
   onProgressChange,
   onDoubleClick,
@@ -72,6 +79,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const taskListRef = useRef<HTMLDivElement>(null);
+  const taskAssignerRef = useRef<HTMLDivElement>(null);
   const [dateSetup, setDateSetup] = useState<DateSetup>(() => {
     const [startDate, endDate] = ganttDateRange(tasks, viewMode, preStepsCount);
     return { viewMode, dates: seedDates(startDate, endDate, viewMode) };
@@ -81,6 +89,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   );
 
   const [taskListWidth, setTaskListWidth] = useState(0);
+  const [taskAssignerWidth, setTaskAssignerWidth] = useState(0);
   const [svgContainerWidth, setSvgContainerWidth] = useState(0);
   const [svgContainerHeight, setSvgContainerHeight] = useState(ganttHeight);
   const [barTasks, setBarTasks] = useState<BarTask[]>([]);
@@ -243,6 +252,15 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       setTaskListWidth(taskListRef.current.offsetWidth);
     }
   }, [taskListRef, listCellWidth]);
+
+  useEffect(() => {
+    if (hideAssigners) {
+      setTaskAssignerWidth(0);
+    }
+    if (taskAssignerRef.current) {
+      setTaskAssignerWidth(taskAssignerRef.current.offsetWidth);
+    }
+  }, [taskAssignerRef, hideAssigners]);
 
   useEffect(() => {
     if (wrapperRef.current) {
@@ -457,6 +475,26 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     TaskListHeader,
     TaskListTable,
   };
+  const assignerProps: TaskAssignerProps = {
+    rowHeight,
+    rowWidth: listCellAssignerWidth,
+    fontFamily,
+    fontSize,
+    tasks: barTasks,
+    locale,
+    headerHeight,
+    scrollY,
+    ganttHeight,
+    horizontalContainerClass: styles.horizontalContainer,
+    selectedTask,
+    taskAssignerRef,
+    setSelectedTask: handleSelectedTask,
+    onExpanderClick: handleExpanderClick,
+    TaskAssignerHeader,
+    TaskAssignerTable,
+  };
+  console.log("🚀 ~ taskAssignerWidth:", taskAssignerWidth)
+
   return (
     <div>
       <div
@@ -465,6 +503,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
         tabIndex={0}
         ref={wrapperRef}
       >
+        {listCellAssignerWidth && <TaskAssigner {...assignerProps} />}
         {listCellWidth && <TaskList {...tableProps} />}
         <TaskGantt
           gridProps={gridProps}
@@ -504,6 +543,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       <HorizontalScroll
         svgWidth={svgWidth}
         taskListWidth={taskListWidth}
+        taskAssignerWidth={taskAssignerWidth}
         scroll={scrollX}
         rtl={rtl}
         onScroll={handleScrollX}

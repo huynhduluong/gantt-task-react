@@ -31,6 +31,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   tasks,
   headerHeight = 50,
   columnWidth = 60,
+  todayColumnWidth = 60,
   hideRowLines = false,
   hideTicks = false,
   hideWeekends = false,
@@ -413,6 +414,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   };
   const gridProps: GridProps = {
     columnWidth,
+    todayColumnWidth,
     svgWidth,
     tasks: tasks,
     rowHeight,

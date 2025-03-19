@@ -90,6 +90,7 @@ export interface DisplayOption {
 export interface StylingOption {
   headerHeight?: number;
   columnWidth?: number;
+  todayColumnWidth?: number;
   hideWeekends?: boolean;
   hideTicks?: boolean;
   hideRowLines?: boolean;

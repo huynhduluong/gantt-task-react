@@ -9,6 +9,7 @@ export type GridBodyProps = {
   svgWidth: number;
   rowHeight: number;
   columnWidth: number;
+  todayColumnWidth: number;
   todayColor: string;
   weekendColor: string;
   rtl: boolean;
@@ -23,6 +24,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
   rowHeight,
   svgWidth,
   columnWidth,
+  todayColumnWidth,
   todayColor,
   rtl,
   hideRowLines,
@@ -113,9 +115,9 @@ export const GridBody: React.FC<GridBodyProps> = ({
     ) {
       today = (
         <rect
-          x={tickX}
+          x={todayColumnWidth ? (columnWidth - todayColumnWidth) / 2 + tickX : tickX}
           y={0}
-          width={columnWidth}
+          width={todayColumnWidth ? todayColumnWidth : columnWidth}
           height={y}
           fill={todayColor}
         />
@@ -132,7 +134,7 @@ export const GridBody: React.FC<GridBodyProps> = ({
         <rect
           x={tickX + columnWidth}
           y={0}
-          width={columnWidth}
+          width={todayColumnWidth ? todayColumnWidth : columnWidth}
           height={y}
           fill={todayColor}
         />

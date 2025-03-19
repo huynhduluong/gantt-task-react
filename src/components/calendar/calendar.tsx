@@ -235,10 +235,11 @@ export const Calendar: React.FC<CalendarProps> = ({
           {bottomValue}
         </text>
       );
+
       if (
         (i + 1 !== dates.length &&
-          date.getMonth() !== dates[i + 1].getMonth())
-        || i === 0) {
+          date.getMonth() !== dates[i + 1].getMonth())) {
+
         const topValue = getLocaleMonth(date, locale);
         topValues.push(
           <TopPartOfCalendar

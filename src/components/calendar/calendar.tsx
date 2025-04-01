@@ -3,7 +3,7 @@ import { ViewMode } from "../../types/public-types";
 import { TopPartOfCalendar } from "./top-part-of-calendar";
 import {
   getCachedDateTimeFormat,
-  getDaysInMonth,
+  // getDaysInMonth,
   getLocalDayOfWeek,
   getLocaleMonth,
   getWeekNumberISO8601,
@@ -221,9 +221,11 @@ export const Calendar: React.FC<CalendarProps> = ({
     const dates = dateSetup.dates;
     for (let i = 0; i < dates.length; i++) {
       const date = dates[i];
-      const bottomValue = `${getLocalDayOfWeek(date, locale, "short")}, ${date
+      const bottomValue = `${date
         .getDate()
-        .toString()}`;
+        .toString()}/${date
+          .getMonth()
+          .toString()}`;
 
       bottomValues.push(
         <text
@@ -235,31 +237,42 @@ export const Calendar: React.FC<CalendarProps> = ({
           {bottomValue}
         </text>
       );
+      const topValue = `${getLocalDayOfWeek(date, locale, "short")}`;
+      topValues.push(
+        <text
+          key={`weekday-${date.getTime()}`}
+          y={topDefaultHeight * 0.9}
+          x={columnWidth * i + columnWidth * 0.5}
+          className={styles.calendarBottomText}
+        >
+          {topValue}
+        </text>
+      );
 
-      if (
-        (i + 1 !== dates.length &&
-          date.getMonth() !== dates[i + 1].getMonth())) {
+      // if (
+      //   (i + 1 !== dates.length &&
+      //     date.getMonth() !== dates[i + 1].getMonth())) {
 
-        const topValue = getLocaleMonth(date, locale);
-        topValues.push(
-          <TopPartOfCalendar
-            key={topValue + date.getFullYear()}
-            value={topValue}
-            x1Line={columnWidth * (i + 1)}
-            y1Line={0}
-            y2Line={topDefaultHeight}
-            xText={
-              i === 0
-                ? columnWidth * 0.5
-                : columnWidth * (i + 1.5) -
-                getDaysInMonth(date.getMonth(), date.getFullYear()) *
-                columnWidth
-              // * 0.5
-            }
-            yText={topDefaultHeight * 0.9}
-          />
-        );
-      }
+      //   const topValue = getLocaleMonth(date, locale);
+      //   topValues.push(
+      //     <TopPartOfCalendar
+      //       key={topValue + date.getFullYear()}
+      //       value={topValue}
+      //       x1Line={columnWidth * (i + 1)}
+      //       y1Line={0}
+      //       y2Line={topDefaultHeight}
+      //       xText={
+      //         i === 0
+      //           ? columnWidth * 0.5
+      //           : columnWidth * (i + 1.5) -
+      //           getDaysInMonth(date.getMonth(), date.getFullYear()) *
+      //           columnWidth
+      //         // * 0.5
+      //       }
+      //       yText={topDefaultHeight * 0.9}
+      //     />
+      //   );
+      // }
     }
     return [topValues, bottomValues];
   };

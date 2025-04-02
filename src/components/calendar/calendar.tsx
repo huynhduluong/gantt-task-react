@@ -223,9 +223,9 @@ export const Calendar: React.FC<CalendarProps> = ({
       const date = dates[i];
       const bottomValue = `${date
         .getDate()
-        .toString()}/${date
-          .getMonth()
-          .toString()}`;
+        .toString()}/${getCachedDateTimeFormat(locale, {
+          month: "numeric",
+        }).format(date)}`;
 
       bottomValues.push(
         <text

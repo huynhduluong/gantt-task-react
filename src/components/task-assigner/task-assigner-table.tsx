@@ -48,7 +48,7 @@ export const TaskAssignerTableDefault: React.FC<{
                 title={t.assignerName}
               >
                 <div className={styles.taskAssignerNameWrapper}>
-                  <div>{t.assignerName} {isCountTaskByAssigner ? "(" + tasks.filter(a => a.assignerId === t.assignerId).length + ")" : ""}</div>
+                  <div>{t.assignerName} {isCountTaskByAssigner && !t.assignerName ? "(" + tasks.filter(a => a.assignerId === t.assignerId).length + ")" : ""}</div>
                 </div>
               </div>
             </div>

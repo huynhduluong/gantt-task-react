@@ -3,6 +3,7 @@ import { BarTask } from "../../types/bar-task";
 import { Task } from "../../types/public-types";
 
 export type TaskAssignerProps = {
+  isCountTaskByAssigner: boolean
   headerHeight: number;
   rowWidth: string;
   fontFamily: string;
@@ -24,6 +25,7 @@ export type TaskAssignerProps = {
     fontSize: string;
   }>;
   TaskAssignerTable: React.FC<{
+    isCountTaskByAssigner: boolean
     rowHeight: number;
     rowWidth: string;
     fontFamily: string;
@@ -37,6 +39,7 @@ export type TaskAssignerProps = {
 };
 
 export const TaskAssigner: React.FC<TaskAssignerProps> = ({
+  isCountTaskByAssigner,
   headerHeight,
   fontFamily,
   fontSize,
@@ -69,6 +72,7 @@ export const TaskAssigner: React.FC<TaskAssignerProps> = ({
   };
   const selectedTaskId = selectedTask ? selectedTask.id : "";
   const tableProps = {
+    isCountTaskByAssigner,
     rowHeight,
     rowWidth,
     fontFamily,

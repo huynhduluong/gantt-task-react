@@ -88,6 +88,7 @@ export interface DisplayOption {
 }
 
 export interface StylingOption {
+  isCountTaskByAssigner?: boolean;
   headerHeight?: number;
   columnWidth?: number;
   todayColumnWidth?: number;

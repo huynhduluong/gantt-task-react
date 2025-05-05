@@ -4,6 +4,7 @@ import { Task } from "../../types/public-types";
 
 
 export const TaskAssignerTableDefault: React.FC<{
+  isCountTaskByAssigner: boolean;
   rowHeight: number;
   rowWidth: string;
   fontFamily: string;
@@ -18,7 +19,8 @@ export const TaskAssignerTableDefault: React.FC<{
   rowWidth,
   tasks,
   fontFamily,
-  fontSize
+  fontSize,
+  isCountTaskByAssigner,
 }) => {
 
     return (
@@ -46,7 +48,7 @@ export const TaskAssignerTableDefault: React.FC<{
                 title={t.assignerName}
               >
                 <div className={styles.taskAssignerNameWrapper}>
-                  <div>{t.assignerName}</div>
+                  <div>{t.assignerName} {isCountTaskByAssigner ? "(" + tasks.filter(a => a.assignerId === t.assignerId).length + ")" : ""}</div>
                 </div>
               </div>
             </div>

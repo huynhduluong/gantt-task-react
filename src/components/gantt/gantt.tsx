@@ -28,6 +28,7 @@ import { TaskAssignerHeaderDefault } from "../task-assigner/task-assigner-header
 import { TaskAssignerTableDefault } from "../task-assigner/task-assigner-table";
 
 export const Gantt: React.FunctionComponent<GanttProps> = ({
+  isCountTaskByAssigner = false,
   tasks,
   headerHeight = 50,
   columnWidth = 60,
@@ -481,6 +482,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     TaskListTable,
   };
   const assignerProps: TaskAssignerProps = {
+    isCountTaskByAssigner,
     rowHeight,
     rowWidth: listCellAssignerWidth,
     fontFamily,
